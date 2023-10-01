@@ -9,6 +9,7 @@ class WineSerializer(serializers.Serializer):
     description = serializers.CharField()
     id = serializers.IntegerField(read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
+    picture = serializers.FileField()
 
     def create(self, validated_data):
         return Wine.objects.create(**validated_data)
@@ -19,5 +20,6 @@ class WineSerializer(serializers.Serializer):
         instance.varietal = validated_data.get('varietal', instance.varietal)
         instance.id = validated_data.get('id', instance.id)
         instance.description = validated_data.get('description', instance.description)
+        instance.picture = validated_data.get("picture", instance.picture)
         instance.save()
         return instance

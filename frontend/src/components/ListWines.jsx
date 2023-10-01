@@ -15,7 +15,14 @@ function ListWines() {
   }, [])
 
   const createWineList = () => {
-    return wines.map( w => <h2 key={w.wine_name}>{w.wine_name}</h2>)
+    return wines.map( w => {
+      return (
+        <>
+        <h2 key={w.wine_name}>{w.wine_name}</h2>
+        <img src={w.picture}></img>
+        </>
+      )
+  })
   }
 
 

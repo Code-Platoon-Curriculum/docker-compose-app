@@ -7,6 +7,7 @@ class Wine(models.Model):
     varietal = models.CharField(max_length=255)
     description = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
+    img_url = models.URLField()
 
     def __str__(self):
         return self.wine_name

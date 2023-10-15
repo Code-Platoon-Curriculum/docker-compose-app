@@ -15,8 +15,14 @@ services:
       - DB_NAME=$POSTGRES_DB
       - DB_USER=$POSTGRES_USER
       - DB_PASS=$POSTGRES_PASSWORD
+      - MY_API_KEY=$MY_API_KEY
+      - MY_PHOTO_URL=$MY_PHOTO_URL
     depends_on:
       - db
+  dummy_photos:
+    build: ./dummy_photos_service
+    ports:
+      - "8001:80"
   nginx:
     build: 
       context: .

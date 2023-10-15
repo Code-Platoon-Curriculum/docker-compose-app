@@ -126,3 +126,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MY_API_KEY = os.getenv("MY_API_KEY")
+MY_PHOTO_URL = os.getenv("MY_PHOTO_URL")

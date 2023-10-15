@@ -8,6 +8,8 @@ export DEBUG=True
 export POSTGRES_DB=wines
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=postgres
+export MY_API_KEY=$1
+export MY_PHOTO_URL=$2 # for prod use https://jsonplaceholder.typicode.com/photos  for dev use http://dummy_photos
 
 docker-compose -f docker-compose.dev.yml up -d --build
 
@@ -15,3 +17,4 @@ docker-compose -f docker-compose.dev.yml up -d --build
 sleep 10 
 docker exec docker-compose-app-api-1  python /src/manage.py makemigrations 
 docker exec docker-compose-app-api-1  python /src/manage.py migrate
+docker exec docker-compose-app-api-1  python manage.py shell -c "exec(open('./setup_data.py').read())"

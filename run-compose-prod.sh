@@ -11,6 +11,8 @@ export POSTGRES_DB=$3
 export POSTGRES_USER=$4
 export POSTGRES_PASSWORD=$5
 export NEW_VERSION=$6
+export MY_API_KEY=$7
+export MY_PHOTO_URL=$8 # for prod use https://jsonplaceholder.typicode.com/photos 
 
 docker-compose -f docker-compose.prod.yml build --no-cache
 docker-compose -f docker-compose.prod.yml up -d

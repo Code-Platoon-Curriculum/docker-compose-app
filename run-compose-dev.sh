@@ -9,7 +9,7 @@ export POSTGRES_DB=wines
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=postgres
 export MY_API_KEY=$1
-export MY_PHOTO_URL=$2 # for prod use https://jsonplaceholder.typicode.com/photos  for dev use http://dummy_photos
+export MY_PHOTO_URL=$2 # for dev use http://dummy_photos
 
 docker-compose -f docker-compose.dev.yml up -d --build
 

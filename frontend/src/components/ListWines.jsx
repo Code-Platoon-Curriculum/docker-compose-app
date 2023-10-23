@@ -22,9 +22,10 @@ function ListWines() {
         <>
           <h2 key={w.wine_name}>{w.wine_name}</h2>
           <img src={w.img_url}></img>
+          <p> From cache or not: {w.img_fetch_src}</p>
         </>
       )
-  })
+    })
   }
 
 

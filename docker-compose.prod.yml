@@ -14,9 +14,10 @@ services:
       - DB_USER=$POSTGRES_USER
       - DB_PASS=$POSTGRES_PASSWORD
       - MY_API_KEY=$MY_API_KEY
-      - MY_PHOTO_URL=$MY_PHOTO_URL
     depends_on:
       - db
+  redis:
+    image: redis:alpine
   nginx:
     image: $DOCKERHUB_UNAME/webserver-prod:$NEW_VERSION
     restart: always

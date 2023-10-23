@@ -7,7 +7,6 @@ from django.conf import settings
 
 
 def get_thumbnail_url(varietal):
-    print("in get_thumbnail_url")
     key = settings.MY_API_KEY
     url = f"https://api.pexels.com/v1/search?query={varietal}&per_page=1"
     response = requests.get(url, headers={"Authorization": key})

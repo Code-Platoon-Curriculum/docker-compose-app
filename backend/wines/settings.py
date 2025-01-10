@@ -24,8 +24,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG =  True if os.getenv("DEBUG") == "True" else False
 
-ALLOWED_HOSTS = ["*"]
-
+# ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS= [os.getenv("ALLOWED_HOSTS")]
 
 # Application definition
 
@@ -80,8 +80,8 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "wines"),
         "USER": os.getenv("DB_USER", "postgres"),
         "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
-        "HOST": "db",  
-        "PORT": 5432,
+        "HOST": os.getenv("DB_HOST", "db"),  
+        "PORT": os.getenv("DB_PORT", "5432")
     }
 }
 
@@ -120,7 +120,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = os.getenv("STATIC_URL", "static/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

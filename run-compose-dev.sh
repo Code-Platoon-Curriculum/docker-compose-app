@@ -19,6 +19,8 @@ export STATIC_URL="static/"
 
 ## Django Networking config
 export ALLOWED_HOSTS="*"
+export CORS_ALLOW_ALL_ORIGINS=True
+export CORS_ALLOWED_ORIGINS="http://*"
 
 ## Django DB config
 ## ALSO USED FOR POSTGRES CONFIG IN docker-compose.yml
@@ -27,7 +29,6 @@ export DB_USER=postgres
 export DB_PASSWORD=postgres
 export DB_PORT=5432 #TODO: Delete, postgres image doesnt allow
 export DB_HOST=db # this comes from the docker-compose.yml
-
 
 # Create and Run docker containers using our env vars
 # --build forces a new build of images every time this is run

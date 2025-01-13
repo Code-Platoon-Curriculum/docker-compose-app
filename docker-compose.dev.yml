@@ -5,6 +5,8 @@ services:
     ports:
       - "8000:8000"
     environment:
+      - CORS_ALLOW_ALL_ORIGINS=$CORS_ALLOW_ALL_ORIGINS
+      - CORS_ALLOWED_ORIGINS=$CORS_ALLOWED_ORIGINS 
       - SECRET_KEY=$SECRET_KEY
       - DEBUG=$DEBUG
       - STATIC_URL=$STATIC_URL
@@ -16,6 +18,13 @@ services:
       - DB_HOST=$DB_HOST
     depends_on:
       - db
+  nginx:
+    build:
+      context: .
+      dockerfile: ./webserver/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
   db:
     image: postgres:15
     volumes:

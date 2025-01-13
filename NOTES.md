@@ -13,4 +13,4 @@
   - create nginx config
     - Map http requests with `api/`  in the URL to go to django api
 
-- Update docker-compose and shell script
+- Update docker-compose. No need to update shell script as the frontend env vars get set in the Dockerfile.

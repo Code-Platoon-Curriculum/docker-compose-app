@@ -1,5 +1,14 @@
 #!/bin/sh
 
+###
+# This script takes command line args and uses them to create the env vars
+# needed by docker/docker-compose, and then spins up the docker containers, etc.
+#
+# Useage: ./run-compose-prod.sh <MY_SECRET_KEY> <DEBUG> <POSTGRES>DB> <POSTGRES_USER> <POSTGRES_PASSWORD> <VERSION> 
+# ./run-compose-prod
+###
+
+# IMPORTANT: You will need to set this to your dockerhub username
 # The Dockerhub account where the images are stored
 export DOCKERHUB_UNAME=chadmowbray
 

@@ -41,19 +41,45 @@ NOTE: You might have to change the file permissions to run the scripts `chmod 75
 Lastly, `build-and-push-images.sh` (which takes two arguments: your EC2 IP address, and the current version of your application, i.e. 1.2) is for pushing up your images to Dockerhub so they can be accessed for the production deployment.  Be sure to set the `DOCKERHUB_UNAME` variable to your own Dockerhub account. Versioning your containers enables you to keep track of what you have deployed at any given time.
 
 
-# Development
+## Development
+
 The main difference between the `docker-compose.dev.yml` and `docker-compose.prod.yml` files is that the dev version uses local Dockerfiles to build everything, whereas the prod version uses images that have been pushed to your Dockerhub account (and versioned).
 
 ## Production
 
-Create an EC2 instance.
+1. Create an EC2 instance.
 
-Ensure that you've run `build-and-push-images.sh <MY_EC2_IP_ADDR> <VERSION>`
+2. Get the `pem` keyfile for your ec2 and save it to your machine
 
-You'll need to install docker and docker-compose.  The `setup-ec2.sh` script takes care of that.  Before you can run it, you'll have to copy it over, replacing your .pem file and IP address as necessary:
+3. ssh into your EC2 using the `pem` keyfile
+
+4. Copy over files to the EC2 you will need with `scp` (very similar to ssh):
+
+```bash
+scp  -i "<MY_PEM_KEY_FILENAME>" ./setup-ec2.sh ./run-compose-prod.sh ./docker-compose.prod.yml   <MY_EC2_USERNAME>@<MY_EC2_IP_ADDR>.compute-1.amazonaws.com:/home/<MY_EC2_USERNAME>
+```
+
+Example running the scp command (your filenames, etc will be different):
+
 ```bash
 scp  -i "vanillaApp.pem" ./setup-ec2.sh ./run-compose-prod.sh ./docker-compose.prod.yml   ec2-user@ec2-18-234-99-58.compute-1.amazonaws.com:/home/ec2-user
 ```
 
-Now you can run the Docker installation script: `./setup-ec2.sh`, and then the `run-compose-prod.sh` script with appropriate arguments.
+5. Run the setup ec2 shell script on the EC2. This installs docker, docker-compose, etc, and configures docker stuff on the ec2:
 
+```bash
+./setup-ec2.sh
+```
+
+6. Keep the EC2 running so the IP does not change. 
+
+7. **On your local machine**, not the EC2, run the `build-and-push` images shell script. Run it like so with the following arguments:
+`build-and-push-images.sh <MY_EC2_IP_ADDR> <VERSION>` where `<VERSION>` the version of your app (you get to set this, 1, 2, 3, etc).
+
+8. In `run-compose-prod.sh` modify it to use your dockerhub username. Be sure to review the documentation comments in the file, which have instructions.
+
+9. Now, on your EC2 run `run-compose-prod.sh` and pass your env var settings as arguments (see the file). Example:
+
+19. Run `docker ps` to confirm your containers are up and running!!
+
+You can use `stop-compse-prod.sh` to stop all the containers, or docker/docker compose to stop individual containers as neeed.

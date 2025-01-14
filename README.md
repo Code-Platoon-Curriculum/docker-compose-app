@@ -86,4 +86,4 @@ scp  -i "vanillaApp.pem" ./setup-ec2.sh ./run-compose-prod.sh ./docker-compose.p
 
 19. Run `docker ps` to confirm your containers are up and running!!
 
-You can use `stop-compse-prod.sh` to stop all the containers, or docker/docker compose to stop individual containers as neeed.
+You can use `stop-compose-prod.sh` to stop all the containers, or docker/docker compose to stop individual containers as neeed.

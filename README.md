@@ -43,9 +43,13 @@ Lastly, `build-and-push-images.sh` (which takes two arguments: your EC2 IP addre
 
 ## Development
 
+The development scripts and docker-compose file are intended for building the application to be run on your local machine. This is not really for use when developing, but to run your code in a "production-like" environment to make sure everything works.
+
 The main difference between the `docker-compose.dev.yml` and `docker-compose.prod.yml` files is that the dev version uses local Dockerfiles to build everything, whereas the prod version uses images that have been pushed to your Dockerhub account (and versioned).
 
 ## Production
+
+The production scripts and docker-compose file are intended for building docker images which get pushed to docker hub, and then pulled down onto a single AWS EC2 instance and run their - a production build to be run in your production environment. Below are steps for doing so.
 
 1. Create an EC2 instance.
 

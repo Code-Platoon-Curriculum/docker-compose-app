@@ -7,7 +7,7 @@ function ListWines() {
   useEffect( () => {
     async function getWines() {
       const base_url = import.meta.env.VITE_BASE_URL
-      const res = await fetch(`http://${base_url}/api/`)
+      const res = await fetch(`${base_url}/api/`)
       const body = await res.json()
       setWines(body.result)
     }

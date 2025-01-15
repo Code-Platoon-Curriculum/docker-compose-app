@@ -31,7 +31,7 @@ function CreateWine() {
 
   const addWine = async (wineObj) => {
     const base_url = import.meta.env.VITE_BASE_URL
-    const url = `http://${base_url}/api/`
+    const url = `${base_url}/api/`
     const context = {
       method: "POST",
       headers: {
